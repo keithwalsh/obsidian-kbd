@@ -10,6 +10,7 @@ Style and quickly insert `<kbd>` tags in your notes for beautiful keyboard key f
 - Styles all `<kbd>` tags in your notes for both light and dark themes.
 - Command Palette action: **Wrap selection with `<kbd>`**.
 - Default hotkey: <kbd>Ctrl / Cmd</kbd> + <kbd>K</kbd> (customizable in Settings → Hotkeys).
+- **Multiple cursor support**: Select multiple text portions and wrap them all at once.
 - Works seamlessly in the editor and preview modes.
 
 ---
@@ -25,6 +26,7 @@ Style and quickly insert `<kbd>` tags in your notes for beautiful keyboard key f
 ## How to Use
 
 1. **Select text** in your note you want to format as a keyboard key.
+   - **Tip**: Hold <kbd>Ctrl / Cmd</kbd> and click to create multiple selections for batch wrapping.
 2. Use the command palette (<kbd>Ctrl / Cmd</kbd> + <kbd>P</kbd>) and search for **Wrap selection with `<kbd>`**.
 3. Or, use the default hotkey: <kbd>Ctrl / Cmd</kbd> + <kbd>K</kbd>.
 4. The selected text will be wrapped in `<kbd></kbd>` tags and styled automatically.
@@ -63,7 +65,7 @@ Style and quickly insert `<kbd>` tags in your notes for beautiful keyboard key f
 
 ## Support & Feedback
 
-- Found a bug or have a feature request? [Open an issue](https://github.com/yourusername/kbd/issues) on GitHub.
+- Found a bug or have a feature request? [Open an issue](https://github.com/keithwalsh/obsidian-kbd/issues) on GitHub.
 - For questions or help, use the Obsidian forum or Discord.
 
 ---

@@ -3,6 +3,11 @@ import esbuild from 'esbuild';
 const mode = process.argv[2] ?? 'production';
 const isDev = mode === 'dev' || mode === 'development';
 
+
+const banner = {
+  js: `/*! Kbd Plugin for Obsidian | MIT License | Keith Walsh */`,
+};
+
 /**
  * Build the plugin with esbuild.
  *  - entry: src/main.ts
@@ -21,6 +26,10 @@ const common = {
   sourcemap: isDev,
   treeShaking: true,
   minify: !isDev,
+  banner: !isDev ? banner : undefined,
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(isDev ? 'development' : 'production'),
+  },
 };
 
 if (isDev) {
@@ -30,4 +39,4 @@ if (isDev) {
 } else {
   await esbuild.build(common);
   console.log('✨ Production build completed');
-} 
+}

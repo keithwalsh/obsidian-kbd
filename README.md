@@ -5,6 +5,7 @@ Style and quickly insert `<kbd>` tags in your notes for beautiful keyboard key f
 ---
 
 ## Features
+<div style="text-align: center;"><table><tr><td><img src="resources/screenshots/dark-theme.png" alt="dark-theme" height="50"/></td><td><img src="resources/screenshots/light-theme.png" alt="light-theme" height="50"/></td></tr></table></div>
 
 - Styles all `<kbd>` tags in your notes for both light and dark themes.
 - Command Palette action: **Wrap selection with `<kbd>`**.

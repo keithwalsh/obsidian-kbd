@@ -1,0 +1,16 @@
+{
+  "name": "obsidian-kbd",
+  "version": "1.0.0",
+  "description": "Wrap selected text with <kbd> tags and style them in Obsidian.",
+  "author": "Keith Walsh",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node esbuild.config.mjs dev",
+    "build": "tsc -noEmit && node esbuild.config.mjs production"
+  },
+  "devDependencies": {
+    "obsidian": "latest",
+    "typescript": "^5.4.0",
+    "esbuild": "^0.20.0"
+  }
+} 

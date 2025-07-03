@@ -1,0 +1,23 @@
+# Node dependencies
+node_modules/
+
+# Build artifacts
+main.js
+main.js.map
+.esbuild/
+
+# TypeScript incremental build info
+*.tsbuildinfo
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.* 

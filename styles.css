@@ -1,0 +1,28 @@
+kbd {
+    border-radius: .25rem !important;
+    vertical-align: middle !important;
+    height: 1.5rem !important;
+    min-width: 1.5rem !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding-left: .5em !important;
+    padding-right: .5em !important;
+    padding-top: .15em !important;
+    padding-bottom: .15em !important;
+    font-size: .92rem !important;
+    display: inline-flex !important;
+}
+
+
+.theme-light kbd {
+    background-color: oklch(98% 0 0) !important;
+    border: 1px solid color-mix(in srgb, oklch(21% .006 285.885) 20%, transparent) !important;
+    border-bottom: 2px solid color-mix(in srgb, oklch(21% .006 285.885) 20%, transparent) !important;
+}
+
+
+.theme-dark kbd {
+  background-color: oklch(0.23 0.01 270) !important;
+  border: 1px solid color-mix(in srgb, oklch(97.807% .029 256.847) 20%, transparent) !important;
+  border-bottom: 2px solid color-mix(in srgb, oklch(97.807% .029 256.847) 20%, transparent) !important;
+}

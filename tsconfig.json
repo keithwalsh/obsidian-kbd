@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "module": "ES2020",
+    "lib": ["ES2021", "DOM"],
+    "moduleResolution": "Node",
+    "rootDir": "src",
+    "strict": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "types": ["obsidian"],
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"]
+} 

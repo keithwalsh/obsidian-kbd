@@ -10,5 +10,6 @@ main.js
 # TypeScript incremental build info
 *.tsbuildinfo
 
-# Notes
+# Other
 notes.md
+.*rules

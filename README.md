@@ -7,22 +7,22 @@ Style and quickly insert `<kbd>` tags in your notes for beautiful keyboard key f
 ## Features
 <table>
 <tr>
-<th></th>
-<th>Dark Theme</th>
-<th>Light Theme</th>
+<td></td>
+<td>Dark Theme</td>
+<td>Light Theme</td>
 </tr>
 <tr>
-<td><strong>Default Style</strong></td>
+<td>Default</td>
 <td><img src="resources/screenshots/default-dark-theme.png" alt="default-dark-theme" height="50"/></td>
 <td><img src="resources/screenshots/default-light-theme.png" alt="default-light-theme" height="50"/></td>
 </tr>
 <tr>
-<td><strong>GitHub Style</strong></td>
+<td>GitHub</td>
 <td><img src="resources/screenshots/github-dark-theme.png" alt="github-dark-theme" height="50"/></td>
 <td><img src="resources/screenshots/github-light-theme.png" alt="github-light-theme" height="50"/></td>
 </tr>
 <tr>
-<td><strong>StackOverflow Style</strong></td>
+<td>Stack Overflow</td>
 <td><img src="resources/screenshots/stackoverflow-dark-theme.png" alt="stackoverflow-dark-theme" height="50"/></td>
 <td><img src="resources/screenshots/stackoverflow-light-theme.png" alt="stackoverflow-light-theme" height="50"/></td>
 </tr>

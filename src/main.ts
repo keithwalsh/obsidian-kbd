@@ -26,7 +26,7 @@ const DEFAULT_SETTINGS: KbdWrapperSettings = {
 export default class KbdWrapperPlugin extends Plugin {
   settings: KbdWrapperSettings = DEFAULT_SETTINGS;
 
-  private translations: Translations = {
+  private readonly translations: Translations = {
     en: {
       'select-text-notice': 'Please select text to wrap in <kbd> tags.',
       'menu-item-title': '<kbd>',
@@ -277,7 +277,7 @@ export default class KbdWrapperPlugin extends Plugin {
   }
 
   async loadSettings() {
-    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+    this.settings = { ...DEFAULT_SETTINGS, ...(await this.loadData()) };
   }
 
   async saveSettings() {

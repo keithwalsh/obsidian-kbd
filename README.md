@@ -9,7 +9,7 @@ Style and quickly insert `<kbd>` tags in your notes for beautiful keyboard key f
 
 - Styles all `<kbd>` tags in your notes for both light and dark themes.
 - Command Palette action: **Wrap selection with `<kbd>`**.
-- Default hotkey: <kbd>Ctrl / Cmd</kbd> + <kbd>K</kbd> (customizable in Settings → Hotkeys).
+- **Customizable hotkey**: Set your own preferred keyboard shortcut in Settings → Hotkeys.
 - **Multiple cursor support**: Select multiple text portions and wrap them all at once.
 - Automatically **unwraps** if the selection is already inside `<kbd>` tags, letting you toggle formatting on and off.
 - **Context menu** entry: Right-click to quickly wrap or unwrap the current selection with `<kbd>` tags.
@@ -30,18 +30,20 @@ Style and quickly insert `<kbd>` tags in your notes for beautiful keyboard key f
 1. **Select text** in your note you want to format as a keyboard key.
    - **Tip**: Hold <kbd>Ctrl / Cmd</kbd> and click to create multiple selections for batch wrapping.
 2. Use the command palette (<kbd>Ctrl / Cmd</kbd> + <kbd>P</kbd>) and search for **Wrap selection with `<kbd>`**.
-3. Or, use the default hotkey: <kbd>Ctrl / Cmd</kbd> + <kbd>K</kbd>.
+3. Or, assign a custom hotkey in **Settings → Hotkeys** for quick access.
 4. The selected text will be wrapped in `<kbd></kbd>` tags and styled automatically.
 
 ---
 
-## Hotkeys
+## Setting Up Hotkeys
 
-| Hotkey                               | Action                                 |
-|--------------------------------------|----------------------------------------|
-| <kbd>Ctrl / Cmd</kbd> + <kbd>K</kbd> | Wrap selection with `<kbd>` tags       |
+This plugin doesn't include a default hotkey to avoid conflicts with your existing shortcuts. To set up a custom hotkey:
 
-*You can change or remove this hotkey in* **Settings → Hotkeys** *like any other command.*
+1. Go to **Settings → Hotkeys**
+2. Search for "Wrap selection with `<kbd>`"
+3. Click the **+** button to assign your preferred key combination
+
+*Popular choices include* <kbd>Ctrl / Cmd</kbd> + <kbd>K</kbd> *or* <kbd>Ctrl / Cmd</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd>*.*
 
 ---
 
@@ -60,7 +62,7 @@ Style and quickly insert `<kbd>` tags in your notes for beautiful keyboard key f
 
 ## Customization
 
-- **Hotkey**: Change or remove the default hotkey in *Settings → Hotkeys*.
+- **Hotkey**: Set up your preferred keyboard shortcut in *Settings → Hotkeys*.
 - **Styles**: To further customize the appearance of `<kbd>` tags, add your own CSS snippets in Obsidian's Appearance settings.
 
 ---

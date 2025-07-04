@@ -1,5 +1,14 @@
 import { Plugin, Editor, Notice, Menu } from 'obsidian';
 
+// Extend the global Window interface to include moment
+declare global {
+  interface Window {
+    moment?: {
+      locale?: () => string;
+    };
+  }
+}
+
 interface Translations {
   [key: string]: {
     [key: string]: string;
@@ -52,7 +61,7 @@ export default class KbdWrapperPlugin extends Plugin {
 
   private getCurrentLocale(): string {
     // Try to get locale from Obsidian settings or browser
-    const locale = (window as any).moment?.locale?.() || 
+    const locale = window.moment?.locale?.() || 
                    navigator.language?.substring(0, 2) || 
                    'en';
     
@@ -160,12 +169,6 @@ export default class KbdWrapperPlugin extends Plugin {
     this.addCommand({
       id: 'wrap-selection-with-kbd',
       name: 'Wrap selection with <kbd>',
-      hotkeys: [
-        {
-          modifiers: ["Mod"],
-          key: "k",
-        },
-      ],
       editorCallback: (editor: Editor) => {
         this.wrapSelectionWithKbd(editor);
       },

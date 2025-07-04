@@ -11,6 +11,8 @@ Style and quickly insert `<kbd>` tags in your notes for beautiful keyboard key f
 - Command Palette action: **Wrap selection with `<kbd>`**.
 - Default hotkey: <kbd>Ctrl / Cmd</kbd> + <kbd>K</kbd> (customizable in Settings → Hotkeys).
 - **Multiple cursor support**: Select multiple text portions and wrap them all at once.
+- Automatically **unwraps** if the selection is already inside `<kbd>` tags, letting you toggle formatting on and off.
+- **Context menu** entry: Right-click to quickly wrap or unwrap the current selection with `<kbd>` tags.
 - Works seamlessly in the editor and preview modes.
 
 ---

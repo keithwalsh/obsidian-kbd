@@ -5,7 +5,28 @@ Style and quickly insert `<kbd>` tags in your notes for beautiful keyboard key f
 ---
 
 ## Features
-<div style="text-align: center;"><table><tr><td><img src="resources/screenshots/dark-theme.png" alt="dark-theme" height="50"/></td><td><img src="resources/screenshots/light-theme.png" alt="light-theme" height="50"/></td></tr></table></div>
+<table>
+<tr>
+<th></th>
+<th>Dark Theme</th>
+<th>Light Theme</th>
+</tr>
+<tr>
+<td><strong>Default Style</strong></td>
+<td><img src="resources/screenshots/default-dark-theme.png" alt="default-dark-theme" height="50"/></td>
+<td><img src="resources/screenshots/default-light-theme.png" alt="default-light-theme" height="50"/></td>
+</tr>
+<tr>
+<td><strong>GitHub Style</strong></td>
+<td><img src="resources/screenshots/github-dark-theme.png" alt="github-dark-theme" height="50"/></td>
+<td><img src="resources/screenshots/github-light-theme.png" alt="github-light-theme" height="50"/></td>
+</tr>
+<tr>
+<td><strong>StackOverflow Style</strong></td>
+<td><img src="resources/screenshots/stackoverflow-dark-theme.png" alt="stackoverflow-dark-theme" height="50"/></td>
+<td><img src="resources/screenshots/stackoverflow-light-theme.png" alt="stackoverflow-light-theme" height="50"/></td>
+</tr>
+</table>
 
 - Styles all `<kbd>` tags in your notes for both light and dark themes.
 - Command Palette action: **Wrap selection with `<kbd>`**.
@@ -63,7 +84,10 @@ This plugin doesn't include a default hotkey to avoid conflicts with your existi
 ## Customization
 
 - **Hotkey**: Set up your preferred keyboard shortcut in *Settings → Hotkeys*.
-- **Styles**: To further customize the appearance of `<kbd>` tags, add your own CSS snippets in Obsidian's Appearance settings.
+- **Kbd Style**: Choose from three built-in styles in *Settings → Kbd*:
+  - **Default**: Clean, modern style with subtle borders
+  - **GitHub**: Mimics GitHub's keyboard key styling
+  - **StackOverflow**: Recreates StackOverflow's kbd tag appearance
 
 ---
 

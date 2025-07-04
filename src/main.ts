@@ -1,4 +1,4 @@
-import { Plugin, Editor, Notice, Menu } from 'obsidian';
+import { Plugin, Editor, Notice, Menu, PluginSettingTab, App, Setting } from 'obsidian';
 
 // Extend the global Window interface to include moment
 declare global {
@@ -15,47 +15,117 @@ interface Translations {
   };
 }
 
+interface KbdWrapperSettings {
+  kbdStyle: 'default' | 'github' | 'stackoverflow';
+}
+
+const DEFAULT_SETTINGS: KbdWrapperSettings = {
+  kbdStyle: 'default'
+};
+
 export default class KbdWrapperPlugin extends Plugin {
+  settings: KbdWrapperSettings = DEFAULT_SETTINGS;
+
   private translations: Translations = {
     en: {
       'select-text-notice': 'Please select text to wrap in <kbd> tags.',
       'menu-item-title': '<kbd>',
+      'settings-title': 'Kbd Style Settings',
+      'style-setting': 'Kbd Style',
+      'style-setting-desc': 'Choose the visual style for <kbd> tags',
+      'style-default': 'Default',
+      'style-github': 'GitHub',
+      'style-stackoverflow': 'Stack Overflow',
     },
     es: {
       'select-text-notice': 'Por favor selecciona texto para envolver en etiquetas <kbd>.',
       'menu-item-title': '<kbd>',
+      'settings-title': 'Configuración de Estilo Kbd',
+      'style-setting': 'Estilo Kbd',
+      'style-setting-desc': 'Elige el estilo visual para las etiquetas <kbd>',
+      'style-default': 'Predeterminado',
+      'style-github': 'GitHub',
+      'style-stackoverflow': 'Stack Overflow',
     },
     fr: {
       'select-text-notice': 'Veuillez sélectionner du texte à envelopper dans les balises <kbd>.',
       'menu-item-title': '<kbd>',
+      'settings-title': 'Paramètres de Style Kbd',
+      'style-setting': 'Style Kbd',
+      'style-setting-desc': 'Choisissez le style visuel pour les balises <kbd>',
+      'style-default': 'Par défaut',
+      'style-github': 'GitHub',
+      'style-stackoverflow': 'Stack Overflow',
     },
     de: {
       'select-text-notice': 'Bitte wählen Sie Text aus, um ihn in <kbd>-Tags zu verpacken.',
       'menu-item-title': '<kbd>',
+      'settings-title': 'Kbd-Stil-Einstellungen',
+      'style-setting': 'Kbd-Stil',
+      'style-setting-desc': 'Wählen Sie den visuellen Stil für <kbd>-Tags',
+      'style-default': 'Standard',
+      'style-github': 'GitHub',
+      'style-stackoverflow': 'Stack Overflow',
     },
     it: {
       'select-text-notice': 'Seleziona il testo da avvolgere nei tag <kbd>.',
       'menu-item-title': '<kbd>',
+      'settings-title': 'Impostazioni Stile Kbd',
+      'style-setting': 'Stile Kbd',
+      'style-setting-desc': 'Scegli lo stile visivo per i tag <kbd>',
+      'style-default': 'Predefinito',
+      'style-github': 'GitHub',
+      'style-stackoverflow': 'Stack Overflow',
     },
     pt: {
       'select-text-notice': 'Selecione o texto para envolver em tags <kbd>.',
       'menu-item-title': '<kbd>',
+      'settings-title': 'Configurações de Estilo Kbd',
+      'style-setting': 'Estilo Kbd',
+      'style-setting-desc': 'Escolha o estilo visual para tags <kbd>',
+      'style-default': 'Padrão',
+      'style-github': 'GitHub',
+      'style-stackoverflow': 'Stack Overflow',
     },
     ru: {
       'select-text-notice': 'Пожалуйста, выберите текст для обертывания в теги <kbd>.',
       'menu-item-title': '<kbd>',
+      'settings-title': 'Настройки Стиля Kbd',
+      'style-setting': 'Стиль Kbd',
+      'style-setting-desc': 'Выберите визуальный стиль для тегов <kbd>',
+      'style-default': 'По умолчанию',
+      'style-github': 'GitHub',
+      'style-stackoverflow': 'Stack Overflow',
     },
     zh: {
       'select-text-notice': '请选择要用 <kbd> 标签包装的文本。',
       'menu-item-title': '<kbd>',
+      'settings-title': 'Kbd 样式设置',
+      'style-setting': 'Kbd 样式',
+      'style-setting-desc': '选择 <kbd> 标签的视觉样式',
+      'style-default': '默认',
+      'style-github': 'GitHub',
+      'style-stackoverflow': 'Stack Overflow',
     },
     ja: {
       'select-text-notice': '<kbd>タグで囲むテキストを選択してください。',
       'menu-item-title': '<kbd>',
+      'settings-title': 'Kbd スタイル設定',
+      'style-setting': 'Kbd スタイル',
+      'style-setting-desc': '<kbd>タグの視覚スタイルを選択',
+      'style-default': 'デフォルト',
+      'style-github': 'GitHub',
+      'style-stackoverflow': 'Stack Overflow',
     },
     ko: {
       'select-text-notice': '<kbd> 태그로 감쌀 텍스트를 선택하세요.',
       'menu-item-title': '<kbd>',
+      'settings-title': 'Kbd 스타일 설정',
+      'style-setting': 'Kbd 스타일',
+      'style-setting-desc': '<kbd> 태그의 시각적 스타일 선택',
+      'style-default': '기본값',
+      'style-github': 'GitHub',
+      'style-stackoverflow': 'Stack Overflow',
     },
   };
 
@@ -69,7 +139,7 @@ export default class KbdWrapperPlugin extends Plugin {
     return this.translations[locale] ? locale : 'en';
   }
 
-  private t(key: string): string {
+  public t(key: string): string {
     const locale = this.getCurrentLocale();
     return this.translations[locale]?.[key] || this.translations['en'][key] || key;
   }
@@ -165,6 +235,11 @@ export default class KbdWrapperPlugin extends Plugin {
   }
 
   async onload() {
+    await this.loadSettings();
+
+    // Apply the current style
+    this.applyKbdStyle();
+
     // Add command
     this.addCommand({
       id: 'wrap-selection-with-kbd',
@@ -191,5 +266,62 @@ export default class KbdWrapperPlugin extends Plugin {
         });
       })
     );
+
+    // Add settings tab
+    this.addSettingTab(new KbdSettingTab(this.app, this));
+  }
+
+  onunload() {
+    // Remove any applied styles
+    document.body.classList.remove('kbd-style-default', 'kbd-style-github', 'kbd-style-stackoverflow');
+  }
+
+  async loadSettings() {
+    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+  }
+
+  async saveSettings() {
+    await this.saveData(this.settings);
+    this.applyKbdStyle();
+  }
+
+  private applyKbdStyle() {
+    // Remove all style classes first
+    document.body.classList.remove('kbd-style-default', 'kbd-style-github', 'kbd-style-stackoverflow');
+    
+    // Apply the selected style
+    document.body.classList.add(`kbd-style-${this.settings.kbdStyle}`);
+  }
+}
+
+class KbdSettingTab extends PluginSettingTab {
+  plugin: KbdWrapperPlugin;
+
+  constructor(app: App, plugin: KbdWrapperPlugin) {
+    super(app, plugin);
+    this.plugin = plugin;
+  }
+
+  display(): void {
+    const { containerEl } = this;
+
+    containerEl.empty();
+
+    containerEl.createEl('h2', { text: this.plugin.t('settings-title') });
+
+    new Setting(containerEl)
+      .setName(this.plugin.t('style-setting'))
+      .setDesc(this.plugin.t('style-setting-desc'))
+      .addDropdown(dropdown =>
+        dropdown
+          .addOption('default', this.plugin.t('style-default'))
+          .addOption('github', this.plugin.t('style-github'))
+          .addOption('stackoverflow', this.plugin.t('style-stackoverflow'))
+          .setValue(this.plugin.settings.kbdStyle)
+          .onChange(async (value: string) => {
+            this.plugin.settings.kbdStyle = value as 'default' | 'github' | 'stackoverflow';
+            await this.plugin.saveSettings();
+          })
+      );
   }
 } 

@@ -21,7 +21,8 @@
   --kbd-border-color: color-mix(in srgb, oklch(97.807% .029 256.847) 20%, transparent);
 }
 
-kbd {
+/* Default style (existing style) */
+.kbd-style-default kbd {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -36,4 +37,86 @@ kbd {
   background-color: var(--kbd-bg);
   border: 1px solid var(--kbd-border-color);
   border-bottom-width: 2px;
+}
+
+/* GitHub style */
+.kbd-style-github kbd {
+  display: inline-block;
+  padding: 0.25rem;
+  font-size: 11px;
+  line-height: 10px;
+  vertical-align: middle;
+  border-radius: 6px;
+}
+
+.kbd-style-github.theme-light kbd {
+  color: #1f2328;
+  background-color: #f6f8fa;
+  border: solid 1px #d1d9e0b3;
+  border-bottom-color: #d1d9e0b3;
+  box-shadow: inset 0 -1px 0 #d1d9e0b3;
+}
+
+.kbd-style-github.theme-dark kbd {
+  color: #f0f6fc;
+  background-color: #151b23;
+  border: solid 1px #3d444db3;
+  border-bottom-color: #3d444db3;
+  box-shadow: inset 0 -1px 0 #3d444db3;
+}
+
+/* Fallback for when no style class is applied (use default) */
+body:not(.kbd-style-default):not(.kbd-style-github) kbd {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+
+  height: var(--kbd-height);
+  min-width: var(--kbd-min-width);
+  padding: var(--kbd-padding-block) var(--kbd-padding-inline);
+  border-radius: var(--kbd-radius);
+  font-size: var(--kbd-font-size);
+
+  background-color: var(--kbd-bg);
+  border: 1px solid var(--kbd-border-color);
+  border-bottom-width: 2px;
+}
+
+/* Stack Overflow style */
+.kbd-style-stackoverflow kbd {
+  display: inline-block;
+  white-space: nowrap;
+  border-radius: 4px;
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 0 .1em;
+  overflow-wrap: break-word;
+  padding: .1em .6em;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  border-top-color: transparent;
+  box-shadow: none;
+  background-color: transparent;
+  color: hsl(210, 8%, 5%);
+  text-shadow: none;
+}
+
+.kbd-style-stackoverflow.theme-light kbd {
+  border-color: hsl(210, 9%, 75%);
+  border-top-color: hsl(210, 9%, 75%);
+  box-shadow: 0 1px 1px hsla(210, 8%, 5%, 0.15), inset 0 1px 0 0 hsl(0, 0%, 100%);
+  background-color: hsl(210, 8%, 90%);
+  color: hsl(210, 8%, 5%);
+  text-shadow: 0 1px 0 hsl(0,0%,100%);
+}
+
+.kbd-style-stackoverflow.theme-dark kbd {
+  border-color: transparent;
+  border-top-color: hsl(210, 8%, 80%);
+  box-shadow: 0 1px 2px hsla(210, 8%, 5%, 0.75);
+  background-color: hsl(210, 4%, 27%);
+  color: hsl(210,11%,98%);
+  text-shadow: 0 1px 0 hsl(210, 3%, 15%);
 }

@@ -1,6 +1,7 @@
 # Kbd for Obsidian
 ![build](https://github.com/keithwalsh/obsidian-kbd/actions/workflows/build.yml/badge.svg)
-[![Maintainability](https://qlty.sh/gh/keithwalsh/projects/obsidian-kbd/maintainability.svg)](https://qlty.sh/gh/keithwalsh/projects/obsidian-kbd)
+[![maintainability](https://qlty.sh/gh/keithwalsh/projects/obsidian-kbd/maintainability.svg)](https://qlty.sh/gh/keithwalsh/projects/obsidian-kbd)
+[![code quality](https://img.shields.io/codefactor/grade/github/keithwalsh/obsidian-kbd)](https://www.codefactor.io/repository/github/keithwalsh/obsidian-kbd)
 
 Style and quickly insert `<kbd>` tags in your notes for beautiful keyboard key formatting.
 

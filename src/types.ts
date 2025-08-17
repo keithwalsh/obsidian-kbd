@@ -1,6 +1,6 @@
 /**
  * @fileoverview Type definitions for the Kbd Wrapper plugin, including
- * interfaces for translations, settings, and global extensions.
+ * interfaces for translations and settings.
  */
 
 /**
@@ -20,16 +20,4 @@ export interface Translations {
 export interface KbdWrapperSettings {
   /** The keyboard shortcut styling theme to apply */
   kbdStyle: 'default' | 'github' | 'stackoverflow';
-}
-
-/**
- * Global type extensions for accessing external libraries.
- * Extends the Window interface to include optional moment.js locale functionality.
- */
-declare global {
-  interface Window {
-    moment?: {
-      locale?: () => string;
-    };
-  }
 } 

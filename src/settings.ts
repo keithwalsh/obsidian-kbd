@@ -35,8 +35,6 @@ export class KbdSettingTab extends PluginSettingTab {
 
     containerEl.empty();
 
-    containerEl.createEl('h2', { text: translate('settings-title') });
-
     new Setting(containerEl)
       .setName(translate('style-setting'))
       .setDesc(translate('style-setting-desc'))

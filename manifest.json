@@ -2,7 +2,7 @@
   "id": "kbd",
   "name": "Kbd",
   "version": "0.0.1",
-  "minAppVersion": "1.1.0",
+  "minAppVersion": "1.8.0",
   "description": "Styles <kbd> tags and adds a command/hotkey to wrap selected text with <kbd> tags.",
   "author": "Keith Walsh",
   "authorUrl": "https://github.com/keithwalsh",

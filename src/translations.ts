@@ -4,6 +4,7 @@
  * text translation with fallback mechanisms.
  */
 
+import { getLanguage } from 'obsidian';
 import { Translations } from './types';
 
 /**
@@ -15,8 +16,8 @@ export const translations: Translations = {
   en: {
     'select-text-notice': 'Please select text to wrap in <kbd> tags.',
     'menu-item-title': '<kbd>',
-    'settings-title': 'Kbd Style Settings',
-    'style-setting': 'Kbd Style',
+    'settings-title': 'Kbd style settings',
+    'style-setting': 'Kbd style',
     'style-setting-desc': 'Choose the visual style for <kbd> tags',
     'style-default': 'Default',
     'style-github': 'GitHub',
@@ -116,18 +117,14 @@ export const translations: Translations = {
 
 /**
  * Detects the current user's locale preference.
- * Attempts to determine locale from Obsidian's moment.js configuration,
- * falls back to browser language, and defaults to English if unsupported.
+ * Uses Obsidian's getLanguage API to retrieve the language configured in
+ * application settings and defaults to English if unsupported.
  * 
  * @returns {string} Two-letter language code (e.g., 'en', 'es', 'fr')
  */
 export function getCurrentLocale(): string {
-  // Try to get locale from Obsidian settings or browser
-  const locale = window.moment?.locale?.() || 
-                 navigator.language?.substring(0, 2) || 
-                 'en';
-  
-  // Return supported locale or fallback to English
+  const language = getLanguage();
+  const locale = language?.substring(0, 2) || 'en';
   return translations[locale] ? locale : 'en';
 }
 

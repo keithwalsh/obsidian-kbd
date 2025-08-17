@@ -65,24 +65,6 @@
   box-shadow: inset 0 -1px 0 #3d444db3;
 }
 
-/* Fallback for when no style class is applied (use default) */
-body:not(.kbd-style-default):not(.kbd-style-github) kbd {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  vertical-align: middle;
-
-  height: var(--kbd-height);
-  min-width: var(--kbd-min-width);
-  padding: var(--kbd-padding-block) var(--kbd-padding-inline);
-  border-radius: var(--kbd-radius);
-  font-size: var(--kbd-font-size);
-
-  background-color: var(--kbd-bg);
-  border: 1px solid var(--kbd-border-color);
-  border-bottom-width: 2px;
-}
-
 /* Stack Overflow style */
 .kbd-style-stackoverflow kbd {
   display: inline-block;

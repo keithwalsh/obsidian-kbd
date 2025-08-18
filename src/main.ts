@@ -19,6 +19,44 @@ export default class KbdWrapperPlugin extends Plugin {
   settings: KbdWrapperSettings = DEFAULT_SETTINGS;
 
   /**
+   * Handles text selection processing for kbd wrapping/unwrapping.
+   * @param editor - The Obsidian editor instance
+   * @param selectedText - The selected text content
+   * @param from - Start position of selection
+   * @param to - End position of selection
+   * @returns true if an action was performed, false otherwise
+   */
+  private processTextSelection(editor: Editor, selectedText: string, from: { line: number; ch: number }, to: { line: number; ch: number }): boolean {
+    // Case 1a: selection itself already includes the <kbd> tags → unwrap directly
+    if (selectedText.startsWith('<kbd>') && selectedText.endsWith('</kbd>')) {
+      const unwrapped = selectedText.slice(5, -6);
+      editor.replaceRange(unwrapped, from, to);
+      return true;
+    }
+
+    // Case 1b: selection is INSIDE existing <kbd> … </kbd> tags (tags not selected)
+    const posToOffset = editor.posToOffset.bind(editor);
+    const offsetToPos = editor.offsetToPos.bind(editor);
+    const fromOffset = posToOffset(from);
+    const toOffset = posToOffset(to);
+
+    if (fromOffset >= 5) {
+      const before = editor.getRange(offsetToPos(fromOffset - 5), from);
+      const after = editor.getRange(to, offsetToPos(toOffset + 6));
+
+      if (before === '<kbd>' && after === '</kbd>') {
+        // Remove the surrounding tags entirely
+        editor.replaceRange(selectedText, offsetToPos(fromOffset - 5), offsetToPos(toOffset + 6));
+        return true;
+      }
+    }
+
+    // Otherwise → wrap the selection
+    editor.replaceRange(`<kbd>${selectedText}</kbd>`, from, to);
+    return true;
+  }
+
+  /**
    * Wraps selected text with kbd tags or unwraps existing kbd tags.
    * Handles multiple selection scenarios:
    * - Selection already wrapped with kbd tags: unwraps them
@@ -54,43 +92,7 @@ export default class KbdWrapperPlugin extends Plugin {
 
         // 1. If there IS a textual selection
         if (hasSelection) {
-          // Case 1a: selection itself already includes the <kbd> tags → unwrap directly
-          if (selectedText.startsWith('<kbd>') && selectedText.endsWith('</kbd>')) {
-            const unwrapped = selectedText.slice(5, -6);
-            editor.replaceRange(unwrapped, from, to);
-            didSomething = true;
-            return;
-          }
-
-          // Case 1b: selection is INSIDE existing <kbd> … </kbd> tags (tags not selected)
-          // We need to check the 5 chars before `from` and 6 chars after `to`.
-          const posToOffset = editor.posToOffset.bind(editor);
-          const offsetToPos = editor.offsetToPos.bind(editor);
-
-          const fromOffset = posToOffset(from);
-          const toOffset = posToOffset(to);
-
-          if (fromOffset >= 5) {
-            const before = editor.getRange(
-              offsetToPos(fromOffset - 5),
-              from
-            );
-            const after = editor.getRange(
-              to,
-              offsetToPos(toOffset + 6)
-            );
-
-            if (before === '<kbd>' && after === '</kbd>') {
-              // Remove the surrounding tags entirely
-              editor.replaceRange(selectedText, offsetToPos(fromOffset - 5), offsetToPos(toOffset + 6));
-              didSomething = true;
-              return;
-            }
-          }
-
-          // Otherwise → wrap the selection
-          editor.replaceRange(`<kbd>${selectedText}</kbd>`, from, to);
-          didSomething = true;
+          didSomething = this.processTextSelection(editor, selectedText, from, to) || didSomething;
           return;
         }
 

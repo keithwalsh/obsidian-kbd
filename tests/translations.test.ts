@@ -6,6 +6,46 @@
 import { getLanguage } from 'obsidian';
 import { translations, getCurrentLocale, translate } from '../src/translations';
 
+// Helper functions to reduce nesting depth
+const expectedTranslationKeys = [
+  'select-text-notice',
+  'menu-item-title',
+  'style-setting',
+  'style-setting-desc',
+  'style-default',
+  'style-github',
+  'style-stackoverflow'
+];
+
+const expectedLanguages = ['en', 'es', 'fr', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ko'];
+
+function validateLanguageHasKey(lang: string, key: string): void {
+  expect(translations[lang]).toHaveProperty(key);
+  expect(typeof translations[lang][key]).toBe('string');
+  expect(translations[lang][key].length).toBeGreaterThan(0);
+}
+
+function validateLanguageKeys(lang: string): void {
+  expectedTranslationKeys.forEach(key => validateLanguageHasKey(lang, key));
+}
+
+function validateTranslationEntry(lang: string, key: string, value: string): void {
+  expect(value).toBeTruthy();
+  expect(typeof value).toBe('string');
+}
+
+function validateLanguageTranslations(lang: string, langTranslations: Record<string, string>): void {
+  Object.entries(langTranslations).forEach(([key, value]) => 
+    validateTranslationEntry(lang, key, value)
+  );
+}
+
+function validateStyleKeyTranslation(key: string): void {
+  const translation = translate(key);
+  expect(typeof translation).toBe('string');
+  expect(translation.length).toBeGreaterThan(0);
+}
+
 // Mock the getLanguage function
 jest.mock('obsidian');
 const mockGetLanguage = getLanguage as jest.MockedFunction<typeof getLanguage>;
@@ -17,38 +57,20 @@ describe('translations', () => {
 
   describe('translations object', () => {
     it('should contain all required languages', () => {
-      const expectedLanguages = ['en', 'es', 'fr', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ko'];
       expectedLanguages.forEach(lang => {
         expect(translations).toHaveProperty(lang);
       });
     });
 
     it('should have consistent keys across all languages', () => {
-      const expectedKeys = [
-        'select-text-notice',
-        'menu-item-title',
-        'style-setting',
-        'style-setting-desc',
-        'style-default',
-        'style-github',
-        'style-stackoverflow'
-      ];
-
       Object.keys(translations).forEach(lang => {
-        expectedKeys.forEach(key => {
-          expect(translations[lang]).toHaveProperty(key);
-          expect(typeof translations[lang][key]).toBe('string');
-          expect(translations[lang][key].length).toBeGreaterThan(0);
-        });
+        validateLanguageKeys(lang);
       });
     });
 
     it('should have non-empty translation values', () => {
       Object.entries(translations).forEach(([lang, langTranslations]) => {
-        Object.entries(langTranslations).forEach(([key, value]) => {
-          expect(value).toBeTruthy();
-          expect(typeof value).toBe('string');
-        });
+        validateLanguageTranslations(lang, langTranslations);
       });
     });
   });
@@ -145,11 +167,7 @@ describe('translations', () => {
     it('should work with all supported style options', () => {
       const styleKeys = ['style-default', 'style-github', 'style-stackoverflow'];
       
-      styleKeys.forEach(key => {
-        const translation = translate(key);
-        expect(typeof translation).toBe('string');
-        expect(translation.length).toBeGreaterThan(0);
-      });
+      styleKeys.forEach(validateStyleKeyTranslation);
     });
 
     it('should preserve special characters in translations', () => {

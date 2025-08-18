@@ -20,18 +20,18 @@ export default class KbdWrapperPlugin extends Plugin {
 
   /**
    * Handles text selection processing for kbd wrapping/unwrapping.
+   * Always performs an action (wrap, unwrap, or remove surrounding tags).
    * @param editor - The Obsidian editor instance
    * @param selectedText - The selected text content
    * @param from - Start position of selection
    * @param to - End position of selection
-   * @returns true if an action was performed, false otherwise
    */
-  private processTextSelection(editor: Editor, selectedText: string, from: { line: number; ch: number }, to: { line: number; ch: number }): boolean {
+  private processTextSelection(editor: Editor, selectedText: string, from: { line: number; ch: number }, to: { line: number; ch: number }): void {
     // Case 1a: selection itself already includes the <kbd> tags → unwrap directly
     if (selectedText.startsWith('<kbd>') && selectedText.endsWith('</kbd>')) {
       const unwrapped = selectedText.slice(5, -6);
       editor.replaceRange(unwrapped, from, to);
-      return true;
+      return;
     }
 
     // Case 1b: selection is INSIDE existing <kbd> … </kbd> tags (tags not selected)
@@ -47,13 +47,12 @@ export default class KbdWrapperPlugin extends Plugin {
       if (before === '<kbd>' && after === '</kbd>') {
         // Remove the surrounding tags entirely
         editor.replaceRange(selectedText, offsetToPos(fromOffset - 5), offsetToPos(toOffset + 6));
-        return true;
+        return;
       }
     }
 
     // Otherwise → wrap the selection
     editor.replaceRange(`<kbd>${selectedText}</kbd>`, from, to);
-    return true;
   }
 
   /**
@@ -92,7 +91,8 @@ export default class KbdWrapperPlugin extends Plugin {
 
         // 1. If there IS a textual selection
         if (hasSelection) {
-          didSomething = this.processTextSelection(editor, selectedText, from, to) || didSomething;
+          this.processTextSelection(editor, selectedText, from, to);
+          didSomething = true;
           return;
         }
 

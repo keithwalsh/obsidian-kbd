@@ -32,7 +32,6 @@ Style and quickly insert `<kbd>` tags in your notes for beautiful keyboard key f
 </tr>
 </table>
 
-
 - Styles all `<kbd>` tags in your notes for both light and dark themes.
 
 - Command Palette action: **Wrap selection with `<kbd>`**.
@@ -46,7 +45,6 @@ Style and quickly insert `<kbd>` tags in your notes for beautiful keyboard key f
 - **Context menu** entry: Right-click to quickly wrap or unwrap the current selection with `<kbd>` tags.
 - Works seamlessly in the editor and preview modes.
 
-
 ---
 
 ## Demo
@@ -59,7 +57,6 @@ Style and quickly insert `<kbd>` tags in your notes for beautiful keyboard key f
 
 ## How to Use
 
-
 1. **Select text** in your note you want to format as a keyboard key.
 
    - **Tip**: Hold <kbd>Ctrl / Cmd</kbd> and click to create multiple selections for batch wrapping.
@@ -70,20 +67,17 @@ Style and quickly insert `<kbd>` tags in your notes for beautiful keyboard key f
 
 4. The selected text will be wrapped in `<kbd></kbd>` tags and styled automatically.
 
-
 ---
 
 ## Setting Up Hotkeys
 
 This plugin doesn't include a default hotkey to avoid conflicts with your existing shortcuts. To set up a custom hotkey:
 
-
 1. Go to **Settings → Hotkeys**
 
 2. Search for "Wrap selection with `<kbd>`"
 
 3. Click the **+** button to assign your preferred key combination
-
 
 *Popular choices include* <kbd>Ctrl / Cmd</kbd> + <kbd>K</kbd> *or* <kbd>Ctrl / Cmd</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd>*.*
 
@@ -105,7 +99,6 @@ This plugin doesn't include a default hotkey to avoid conflicts with your existi
 
 6. Activate the plugin
 
-
 ---
 
 ## Customization
@@ -119,7 +112,6 @@ This plugin doesn't include a default hotkey to avoid conflicts with your existi
   - **GitHub**: Mimics GitHub's keyboard key styling
 
   - **StackOverflow**: Recreates StackOverflow's kbd tag appearance
-
 
 ---
 

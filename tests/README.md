@@ -2,12 +2,9 @@
 
 This directory contains comprehensive tests for the Obsidian Kbd Wrapper plugin, ensuring functionality, reliability, and maintainability.
 
-
 ## Test Structure
 
-
 ### Test Files
-
 
 - **`setup.ts`** - Jest configuration and global mocks for Obsidian API
 
@@ -19,9 +16,7 @@ This directory contains comprehensive tests for the Obsidian Kbd Wrapper plugin,
 
 - **`main.test.ts`** - Tests for core plugin functionality including kbd wrapping logic
 
-
 ### Coverage Areas
-
 
 #### Core Functionality
 
@@ -35,7 +30,6 @@ This directory contains comprehensive tests for the Obsidian Kbd Wrapper plugin,
 
 - ✅ Edge cases (empty selections, malformed tags, nested tags)
 
-
 #### Settings & Configuration
 
 - ✅ Settings tab UI rendering
@@ -46,7 +40,6 @@ This directory contains comprehensive tests for the Obsidian Kbd Wrapper plugin,
 
 - ✅ Default configuration validation
 
-
 #### Internationalization
 
 - ✅ Multi-language support (10 languages)
@@ -54,7 +47,6 @@ This directory contains comprehensive tests for the Obsidian Kbd Wrapper plugin,
 - ✅ Locale detection and fallback mechanisms
 
 - ✅ Translation key consistency across languages
-
 
 #### Plugin Lifecycle
 
@@ -66,12 +58,12 @@ This directory contains comprehensive tests for the Obsidian Kbd Wrapper plugin,
 
 - ✅ CSS style management
 
-
 ## Running Tests
 
 ### Prerequisites
 
 Install test dependencies:
+
 ```bash
 npm install
 ```
@@ -99,7 +91,6 @@ Tests run in a Jest environment with:
 
 - **Mocked Obsidian API** to avoid dependencies on the actual Obsidian environment
 
-
 ## Test Patterns
 
 ### Mocking Strategy
@@ -111,7 +102,6 @@ The test suite uses comprehensive mocking for:
 - **DOM methods** (document.body.classList)
 
 - **Translation functions** with predictable return values
-
 
 ### Test Organization
 
@@ -128,6 +118,7 @@ Each test file follows a consistent structure:
 ### Assertions
 
 Tests verify:
+
 - **Functional correctness** - Does it work as expected?
 
 - **Error handling** - Does it fail gracefully?
@@ -139,9 +130,10 @@ Tests verify:
 ## Coverage Goals
 
 The test suite aims for:
+
 - **>90% line coverage** for critical functionality
 
-- **100% coverage** for utility functions 
+- **100% coverage** for utility functions
 (translations, constants)
 
 - **Edge case coverage** for user-facing features

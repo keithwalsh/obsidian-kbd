@@ -18,53 +18,49 @@ module.exports = {
     saveData = jest.fn().mockResolvedValue(undefined);
   },
   
-  Editor: class MockEditor {
-    constructor() {
-      this.listSelections = jest.fn().mockReturnValue([]);
-      this.getRange = jest.fn().mockReturnValue('');
-      this.replaceRange = jest.fn();
-      this.posToOffset = jest.fn().mockReturnValue(0);
-      this.offsetToPos = jest.fn().mockReturnValue({ line: 0, ch: 0 });
-      this.getLine = jest.fn().mockReturnValue('');
-    }
-  },
+  Editor: jest.fn().mockImplementation(() => ({
+    listSelections: jest.fn().mockReturnValue([]),
+    getRange: jest.fn().mockReturnValue(''),
+    replaceRange: jest.fn(),
+    posToOffset: jest.fn().mockReturnValue(0),
+    offsetToPos: jest.fn().mockReturnValue({ line: 0, ch: 0 }),
+    getLine: jest.fn().mockReturnValue('')
+  })),
   
   Notice: jest.fn(),
   
-  Menu: class MockMenu {
-    constructor() {
-      this.addSeparator = jest.fn();
-      this.addItem = jest.fn();
-    }
-  },
+  Menu: jest.fn().mockImplementation(() => ({
+    addSeparator: jest.fn(),
+    addItem: jest.fn()
+  })),
   
-  App: class MockApp {
-    constructor() {
-      this.workspace = {
-        on: jest.fn()
-      };
+  App: jest.fn().mockImplementation(() => ({
+    workspace: {
+      on: jest.fn()
     }
-  },
+  })),
   
-  PluginSettingTab: class MockPluginSettingTab {
-    constructor(app, plugin) {
-      this.app = app;
-      this.plugin = plugin;
-      this.containerEl = {
-        empty: jest.fn()
-      };
+  PluginSettingTab: jest.fn().mockImplementation((app, plugin) => ({
+    app,
+    plugin,
+    containerEl: {
+      empty: jest.fn()
     }
-  },
+  })),
   
-  Setting: class MockSetting {
-    constructor(containerEl) {
-      this.containerEl = containerEl;
-    }
-    
-    setName = jest.fn().mockReturnThis();
-    setDesc = jest.fn().mockReturnThis();
-    addDropdown = jest.fn().mockReturnThis();
-  },
+  Setting: jest.fn().mockImplementation((containerEl) => {
+    const mockSetting = {
+      containerEl,
+      setName: jest.fn(),
+      setDesc: jest.fn(),
+      addDropdown: jest.fn()
+    };
+    // Make methods chainable by returning the mock instance
+    mockSetting.setName.mockReturnValue(mockSetting);
+    mockSetting.setDesc.mockReturnValue(mockSetting);
+    mockSetting.addDropdown.mockReturnValue(mockSetting);
+    return mockSetting;
+  }),
   
   getLanguage: jest.fn().mockReturnValue('en')
 };

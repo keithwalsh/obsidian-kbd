@@ -1,6 +1,6 @@
 {
   "name": "obsidian-kbd",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Wrap selected text with <kbd> tags and style them in Obsidian.",
   "author": "Keith Walsh",
   "license": "MIT",

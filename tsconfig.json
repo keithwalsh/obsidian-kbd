@@ -4,12 +4,11 @@
     "module": "ES2020",
     "lib": ["ES2021", "DOM"],
     "moduleResolution": "Node",
-    "rootDir": "src",
     "strict": true,
     "esModuleInterop": true,
     "sourceMap": true,
-    "types": ["obsidian"],
+    "types": ["obsidian", "jest", "node"],
     "skipLibCheck": true
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "tests/**/*"]
 } 

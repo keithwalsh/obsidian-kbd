@@ -1,5 +1,6 @@
 # Kbd for Obsidian
 ![build](https://github.com/keithwalsh/obsidian-kbd/actions/workflows/build.yml/badge.svg)
+[![codecov](https://codecov.io/gh/keithwalsh/obsidian-kbd/branch/main/graph/badge.svg)](https://codecov.io/gh/keithwalsh/obsidian-kbd)
 [![maintainability](https://qlty.sh/gh/keithwalsh/projects/obsidian-kbd/maintainability.svg)](https://qlty.sh/gh/keithwalsh/projects/obsidian-kbd)
 [![code quality](https://img.shields.io/codefactor/grade/github/keithwalsh/obsidian-kbd)](https://www.codefactor.io/repository/github/keithwalsh/obsidian-kbd)
 

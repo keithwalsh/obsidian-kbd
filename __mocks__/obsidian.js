@@ -40,13 +40,19 @@ module.exports = {
     }
   })),
   
-  PluginSettingTab: jest.fn().mockImplementation((app, plugin) => ({
-    app,
-    plugin,
-    containerEl: {
-      empty: jest.fn()
+  PluginSettingTab: class MockPluginSettingTab {
+    constructor(app, plugin) {
+      this.app = app;
+      this.plugin = plugin;
+      this.containerEl = {
+        empty: jest.fn()
+      };
     }
-  })),
+    
+    display() {
+      // Base implementation - should be overridden by subclasses
+    }
+  },
   
   Setting: jest.fn().mockImplementation((containerEl) => {
     const mockSetting = {
